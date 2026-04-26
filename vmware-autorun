@@ -1,0 +1,24 @@
+#!/sbin/openrc-run
+# Make by LazyPreview
+# This openRC script was tested on Gentoo linux
+
+start_pre() {
+    modprobe -a vmw_vmci 2>/dev/null || true
+}
+
+start() {
+    /etc/init.d/vmware start
+    eend $?
+    
+    /etc/init.d/vmware-USBArbitrator start
+    eend $?
+}
+
+
+stop() {
+    /etc/init.d/vmware stop
+    eend $?
+    
+    /etc/init.d/vmware-USBArbitrator stop
+    eend $?
+}

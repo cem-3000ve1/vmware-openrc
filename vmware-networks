@@ -1,0 +1,17 @@
+#!/sbin/openrc-run
+# Make by LazyPreview
+# This openRC script was tested on Gentoo linux
+
+start_pre() {
+    modprobe vmnet 2>/dev/null || true
+}
+
+start() {
+    /usr/bin/vmware-networks --start
+    eend $?
+}
+
+stop() {
+    /usr/bin/vmware-networks --stop
+    eend $?
+}
